@@ -22,7 +22,7 @@ export function Home() {
     return (
         <View style={styles.container}>
             <Text style={styles.tittle}>
-                Welcome, Filipe!
+                Welcome, Filipe !
             </Text>
 
             <TextInput
