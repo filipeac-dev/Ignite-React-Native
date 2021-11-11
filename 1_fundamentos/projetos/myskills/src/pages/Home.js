@@ -20,9 +20,9 @@ export function Home() {
     }
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <Text style={styles.tittle}>
-                Welcome, Filipe !
+                Welcome, Filipe!
             </Text>
 
             <TextInput
@@ -32,19 +32,19 @@ export function Home() {
                 onChangeText={setNewSkill}
             />
 
-            <Button />
-
+            <Button onPress={handleAddNewSkill} />
+ 
             <Text style={[styles.tittle, { marginTop: 20 }]}>
                 My Skills
             </Text>
 
             {
                 mySkills.map(skill => (
-                    <CardSkill />
+                    <CardSkill key={skill} skill={skill} />
                 ))
             }
 
-        </View>
+        </SafeAreaView>
     )
 }
 
