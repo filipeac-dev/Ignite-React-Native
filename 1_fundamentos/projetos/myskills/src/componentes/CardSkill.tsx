@@ -29,8 +29,8 @@ export function CardSkill({ skill, data, ...rest }: SkillCardsProps) {
 const styles = StyleSheet.create({
     buttonSkill: {
         backgroundColor: '#1F1E25',
-        padding: 15,
-        borderRadius: 50,
+        padding: 10,
+        borderRadius: 22,
         alignItems: 'center',
         marginVertical: 10
     },
@@ -39,6 +39,6 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'normal',
         textAlign: "center",
-        lineHeight: 26
+        lineHeight: 24
     }
 });
