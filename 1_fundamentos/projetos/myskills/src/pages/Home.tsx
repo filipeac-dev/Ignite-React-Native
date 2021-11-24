@@ -10,13 +10,32 @@ import {
 import { Button } from '../componentes/Button';
 import { CardSkill } from '../componentes/CardSkill';
 
+interface SkillData {
+    id: string;
+    name: string;
+    data: string;
+}
+
 export function Home() {
     const [newSkill, setNewSkill] = useState('');
-    const [mySkills, setMySkills] = useState([]);
+    const [mySkills, setMySkills] = useState<SkillData[]>([]);
     const [gretting, setGretting] = useState('');
 
     function handleAddNewSkill() {
-        setMySkills(oldState => [...oldState, newSkill]);
+        const data = {
+            id: String(new Date().getTime()),
+            name: newSkill,
+            data: String(new Date().getUTCDate()) + '/' +
+                String(new Date().getUTCMonth()) + '/' +
+                String(new Date().getUTCFullYear())
+        }
+        setMySkills(oldState => [...oldState, data]);
+    }
+
+    function handleRemoveSkill(id: string) {
+        setMySkills(oldState => oldState.filter(
+            skill => skill.id !== id
+        ));
     }
 
     useEffect(() => {
@@ -48,7 +67,7 @@ export function Home() {
                 onChangeText={setNewSkill}
             />
 
-            <Button onPress={handleAddNewSkill} />
+            <Button title="Add new skill" onPress={handleAddNewSkill} />
 
             <Text style={[styles.tittle, { marginTop: 40, fontSize: 20 }]}>
                 My Skills
@@ -56,9 +75,13 @@ export function Home() {
 
             <FlatList
                 data={mySkills}
-                keyExtractor={item => item}
+                keyExtractor={item => item.id}
                 renderItem={({ item }) => (
-                    <CardSkill skill={item} />
+                    <CardSkill
+                        skill={item.name}
+                        data={item.data}
+                        onPress={() => handleRemoveSkill(item.id)}
+                    />
                 )}
             />
         </SafeAreaView>
@@ -86,7 +109,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#1F1E25',
         color: '#EEE',
         fontSize: 18,
-        padding: Platform === 'ios' ? 15 : 12,
+        padding: Platform.OS === 'ios' ? 15 : 10,
         marginTop: 30,
         borderRadius: 7
     },
