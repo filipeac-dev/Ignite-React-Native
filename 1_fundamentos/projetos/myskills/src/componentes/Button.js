@@ -12,7 +12,7 @@ export function Button({ onPress }) {
             activeOpacity={.5}
             onPress={onPress}
         >
-            <Text style={styles.buttonText}>Add</Text>
+            <Text style={styles.buttonText}>Add Skill</Text>
         </TouchableOpacity>
     )
 }
