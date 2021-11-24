@@ -1,2 +1,2 @@
 # Ignite-React-Native
-Projetos do curso Ignite React Native foi em 2021 
+Projetos do curso Ignite React Native em 2021 
